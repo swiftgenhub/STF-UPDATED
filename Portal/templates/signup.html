@@ -1,0 +1,96 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Other meta tags and CSS -->
+    <script src="{% static 'home/js/check.js' %}"></script>
+    <script src="{% static 'admin/javascript/hetong.js' %}"></script>
+
+    <link href="/static/ase.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+
+    <title>Register</title>
+    <style>
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navlink {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<header>
+    <div class="navbar">
+        <a href="{% url 'Portal:index' %}" class="navlink">Home</a>
+        <a href="{% url 'Portal:services' %}" class="navlink">Services</a>
+        <a href="{% url 'Portal:contactus' %}" class="navlink">Contact Us</a>
+    </div>
+</header>
+
+<body>
+    {% if error_message %}
+    <b>{{ error_message }}</b>
+    <br> {% endif %}
+
+    <br>
+
+    <div style="width: 100%; display: flex; font-weight:normal; border: 0px;">
+        <div style="width: 225px;"></div>
+        <div class="card" style="width: 900px; border: 0px;">
+            <div class="card-header" style="font-weight:normal; ">
+                <h4>Sign Up</h4>
+            </div>
+            <div class="card-body" style="padding-left: 0px;">
+                <form method="post" action="{% url 'Portal:signup' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div style="width: 900px; display: flex;">
+                        <div style="width: 44%">
+                            <div class="form-group">
+                                <label style="font-weight:normal;" for="username">Username</label>
+                                <input autofocus id="username" class="form-control " name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="passwd1" style="font-weight:normal;">Password</label>
+                                <input type="password" class="form-control" name="passwd1" id="passwd1" minlength="8"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="passwd2" style="font-weight:normal;">Re-enter Password</label>
+                                <input type="password" class="form-control" id="passwd2" name="passwd2" minlength="8"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:normal;" for="email">Email</label>
+                                <input class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:normal;" for="bio">Bio</label>
+                                <input class="form-control" id="bio" placeholder="Write something about yourself"
+                                    name="bio" required>
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
